@@ -33,3 +33,7 @@ label
 {
     color: #ffffff;
 }
+.card
+{
+    width: 100% !important;
+}
