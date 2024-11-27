@@ -61,3 +61,7 @@ label
 {
     padding: 26px;
 }
+.updateBtn
+{
+    display: none;
+}

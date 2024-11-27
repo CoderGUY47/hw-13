@@ -2,8 +2,10 @@ let allPost = document.querySelector(".allPost");
 let tname = document.querySelector(".tname");
 let tasks = document.querySelector(".tasks");
 let postBtn = document.querySelector(".postBtn");
+let updateBtn = document.querySelector(".updateBtn");
 let error = document.querySelector(".error");
 let arr = [];
+let indexStore;
 
 postBtn.addEventListener("click",function(){
     error.innerHTML = "";
@@ -37,6 +39,23 @@ postBtn.addEventListener("click",function(){
     }
 });
 
+
+updateBtn.addEventListener("click",function(){
+    arr[indexStore].name= tname.value;
+    arr[indexStore].tasks= tasks.value;
+
+    allPost.innerHTML="";
+    display()
+    
+    postBtn.style.display="inline-block"
+    updateBtn.style.display="none"
+    
+    tname.value=""
+    tasks .value=""
+
+})
+
+
 function display() {
     arr.map(item => {
         allPost.innerHTML += `
@@ -57,6 +76,21 @@ function display() {
             arr.splice(index,1);
             allPost.innerHTML="" //nd to wrt it again for updat the data, neither it will show the previous data with present data
             display();
+        })
+    })
+
+
+    let edtBtn=document.querySelectorAll(".edt")
+    let edtBtnConvert=Array.from(edtBtn)
+    edtBtnConvert.map((item2,index)=>{
+        item2.addEventListener("click",function(){
+            tname.value=arr[index].name
+            tasks.value=arr[index].tasks
+            
+            updateBtn.style.display="inline-block"
+            postBtn.style.display="none"
+            
+            indexStore=index
         })
     })
 
